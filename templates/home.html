@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <!-- <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/main.css') }}"> -->
+
+  </head>
+  <body>
+    <h1>Add Golf Course Details</h1>
+    <form method="POST" action="/">
+      <input type="text" name="name">
+      <input type="text" name="location">
+      <input type="number" name="par">
+      <input type="submit" value="Add">
+    </form>
+
+    <h1>Golf Courses</h1>
+    <table>
+      {% for course in courses %}
+        <tr>
+          <td>
+            {{course.name}}
+          </td>
+          <!-- <td>
+            {{course.location}}
+          </td>
+          <td>
+            {{course.par}}
+          </td> -->
+        <!-- </tr>
+        <tr> -->
+          <td>
+            <form method="POST" action="./update" style="display: inline">
+              <input type="hidden" value="{{course.name}}" name="oldname">
+              <input type="text" value="{{course.name}}" name="newname">
+              <input type="hidden" value="{{course.location}}" name="oldlocation">
+              <input type="text" value="{{course.location}}" name="newlocation">
+              <input type="hidden" value="{{course.par}}" name="oldpar">
+              <input type="number" value="{{course.par}}" name="newpar">
+              <input type="submit" value="Update">
+            </form>
+          </td>
+          <td>
+            <form method="POST" action="./delete" style="display: inline">
+              <input type="hidden" value="{{course.name}}" name="name">
+              <input type="submit" value="Delete">
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>
